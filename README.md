@@ -3,8 +3,6 @@ Boetti
 
 Python functions to produce Aligheri Boetti type progressions (as in Alternando da uno a cento e viceversa (Alternating from one to one hundred and vice versa)).  Here's a photo I took of some rugs following this progression <a href="http://www.flickr.com/photos/conchur/7758559520">here</a> and there are some images from an exhibition in the Mueseum Of Modern Art in New York, New York <a href="http://www.moma.org/interactives/exhibitions/2012/boetti/">here<a/>.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 <a href="http://www.moma.org/interactives/exhibitions/2012/boetti/"><IMG src="http://www.moma.org/interactives/exhibitions/2012/boetti/imgs-large/Boetti_Alternando-da-uno-a-cento_1977-78.png"></a>
 
 Last week I enjoyed seeing the pixel tapestries above, made by Aligheri Boetti in 1977.  These were made of a 10x10 array of alternating black and white panels, each made of 10x10 squares, which I am calling pixels.  Obviously these were not pixels on a screen, but squares on a tapestry, but the concept is the same.  Starting with the first pixel, in the top left hand panel, there are 100 background (black) and 0 foreground (white) pixels.  In the next panel there are 99 background (white) and 1 foreground (black) pixels, the next has 98 background (black) and 2 foreground (white) and so on until in the final panel there is only 1 background and 99 foreground pixels.  Boetti liked pattern-based art which constrained the artist in one sense, but left the artist almost infinite possibilities in another.  In this case there are many different ways that the pixels could be arranged across the 100 panels while obeying this schema.
