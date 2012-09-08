@@ -119,9 +119,9 @@ def generateImage(N=10,border=1,approximw=800,bordercol=227,progression="randomP
     return(im)
 
 if __name__ == '__main__':
-    for x in xrange(0,10):
-        finim=generateImage(7,progression="randomProgress")
-        finim.save("RandomProgress%03d.png"%x)
-        finim=generateImage(7,progression="randomPositions")
-        finim.save("RandomPositions%03d.png"%x)
+    for x in xrange(0,50):
+        finim=generateImage(6,progression="randomProgress")
+        finim.save("TwitterRandomProgress%03d.png"%x)
+        finim=generateImage(6,progression="randomPositions")
+        finim.save("TwitterRandomPositions%03d.png"%x)
         
