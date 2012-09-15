@@ -3,8 +3,12 @@
 # http://www.moma.org/interactives/exhibitions/2012/boetti
 # by Conor Lawless http://lwlss.net
 
+# Get pyx library here: http://sourceforge.net/projects/pyx/
+# http://pyx.sourceforge.net/manual/manual.html
+
 import numpy, random, math
 from PIL import Image
+from pyx import *
 
 def randomPositions(I,J,pixels):
     '''Randomly place the appropriate number of pixels, all allowed to have different locations in each frame'''
@@ -108,7 +112,6 @@ def makeImage(pixels,border,N,approximw,bordercol=227):
     else:
         scl=round(float(approximw)/float(actw))
         imw=int(actw*scl)
-
     im=im.resize((imw,imw))
     return(im)
 
@@ -118,10 +121,40 @@ def generateImage(N=10,border=1,approximw=800,bordercol=227,progression="randomP
     im=makeImage(pixels,border,N,approximw,bordercol)
     return(im)
 
+def makeCanvas(pixels,border,N,bordercol=227,grayc=0.9):
+    '''Converts Boetti array into a vector-graphic with border'''
+    c=canvas.canvas()
+    # Add border
+    c.fill(path.rect(0,0,border+N*(N+border),border+N*(N+border)),[style.linewidth.Thin,color.gray(grayc),deco.filled([color.gray(grayc)])])
+    for I in xrange(0,N):
+        for J in xrange(0,N):
+            for i in xrange(0,N):
+                for j in xrange(0,N):
+                    if pixels[I,J,i,j]==0:
+                        colour=color.rgb.black
+                    else:
+                        colour=color.rgb.white
+                    bl_y=N*(N+border)-(border+I*(N+border)+i)
+                    bl_x=(border+J*(N+border)+j)
+                    c.fill(path.rect(bl_x,bl_y,1,1),[style.linewidth.Thin,colour,deco.filled([colour])])
+    return (c)
+
+def generateCanvas(N=10,border=1,approximw=800,bordercol=227,progression="randomProgress"):
+    '''Wrapper function which builds array and makes canvas'''
+    pixels=generatePixels(N,progression)
+    canv=makeCanvas(pixels,border,N,bordercol)
+    return(canv)
+
 if __name__ == '__main__':
-    for x in xrange(0,50):
+    paglist=[]
+    for x in xrange(0,5):
         finim=generateImage(6,progression="randomProgress")
-        finim.save("TwitterRandomProgress%03d.png"%x)
-        finim=generateImage(6,progression="randomPositions")
-        finim.save("TwitterRandomPositions%03d.png"%x)
+        finim.save("RandomProgress%03d.png"%x)
+        canv=generateCanvas(6,1,progression="randomProgress")
+        pag=document.page(canv,paperformat=document.paperformat.A0,centered=1,fittosize=1,margin=6)
+        paglist.append(pag)
+    doc=document.document(pages=paglist)
+    doc.writetofile("RandomProgress.pdf")    
+        
+        
         
